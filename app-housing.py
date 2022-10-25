@@ -14,7 +14,7 @@ location_filter = st.sidebar.multiselect(
      'Chooose the location type',
      df.ocean_proximity.unique(),  # options
      df.ocean_proximity.unique()) # defaults
-     
+
 # filter by house value
 df = df[df.median_house_value <= price_filter]
 #filter by location
@@ -28,7 +28,7 @@ income = st.sidebar.radio(
 if income == 'low':
     df = df[df.median_income <= 2.5]
 elif income == 'median':
-   df = df[(df.median_income > 2.5) & (df.median_income < 4.5)]
+   df = df[(df.median_income > 2.5) & (df.median_income <= 4.5)]
 elif income == 'high':
     df = df[df.median_income > 4.5]
 
