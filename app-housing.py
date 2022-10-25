@@ -7,15 +7,16 @@ st.title('California Housing Data(1990) by JiangMeng')
 df = pd.read_csv('housing.csv')
 
 #add a slider
-pop_slider = st.slider('Median Housing Price',0,500001,200000)
-df = df[df.median_house_value <= pop_slider]
+price_filter = st.slider('Median Housing Price',0.0,500001.0,200000.0)
 
 # create a multi select
 location_filter = st.sidebar.multiselect(
      'Chooose the location type',
      df.ocean_proximity.unique(),  # options
      df.ocean_proximity.unique()) # defaults
-
+     
+# filter by house value
+df = df[df.median_house_value <= price_filter]
 #filter by location
 df = df[df.ocean_proximity.isin(location_filter)]
 
