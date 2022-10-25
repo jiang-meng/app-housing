@@ -8,7 +8,7 @@ df = pd.read_csv('housing.csv')
 
 #add a slider
 pop_slider = st.slider('Median Housing Price',0,500001,200000)
-df = df[df.median_house_value >= pop_slider]
+df = df[df.median_house_value <= pop_slider]
 
 # create a multi select
 location_filter = st.sidebar.multiselect(
@@ -32,12 +32,11 @@ elif income == 'high':
     df = df[df.median_income > 4.5]
 
 #show on map
-st.write('See more filters in the sidebars')
+st.markdown('### See more filters in the sidebar :')
 st.map(df)
 
 # draw a histogram
-st.write('Histogram of The Median Housing Value')
-fig, ax = plt.subplots()
-s = df.median_house_value
-s.plot.hist(ax=ax,bins=30)
+st.markdown('### Histogram of the Median House Value')
+fig,ax=plt.subplots()
+ax.hist(df.median_house_value,bins=30)
 st.pyplot(fig)
